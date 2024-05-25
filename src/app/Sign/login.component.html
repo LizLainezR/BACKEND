@@ -1,0 +1,80 @@
+<div class="header bg-gradient-danger py-7 py-lg-8">
+  <div class="container">
+    <div class="header-body text-center mb-7">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <h1 class="text-black">BIENVENIDO!</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-header bg-transparent pb-5">
+          <div class="text-center mb-4">
+            <h2 class="text-center text-muted">Inicio de sesión</h2>
+            <p class="text-lead text-light">Potenciando la eficiencia en cada paso: Tu plataforma de gestión ferretera.</p>
+          </div>   
+        </div>
+        <div class="card-body px-lg-5 py-lg-5">
+          <form [formGroup]="formCredentials" (ngSubmit)="onSubmitForm()">
+            <div class="mb-3">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-user"></i>                        
+                  </span>
+                </div>                    
+                <input class="form-control" type="text" formControlName="username" name="username" id="username" placeholder="USUARIO">
+              </div>
+              <div class="form__errors mb-6">
+                <ul class="error-message">
+                  <li *ngFor="let error of errorMessage.usuario" [hidden]="!formCredentials.get('user')?.hasError(error.type) || !formCredentials.get('user')?.dirty || !formCredentials.get('user')?.touched">{{ error.message }}</li>
+                </ul>
+     </div>
+            
+             
+            </div>
+               
+            <div class="">            
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                </div>
+                <input class="form-control" [type]="type" formControlName="password" name="password" id="password" placeholder="CONTRASEÑA">
+                <div class="absolute inset-y-0 right-0 flex items-center mr-2">
+                  <svg (click)="togglePasswordVisibility()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-slate-400 cursor-pointer group-focus-within:text-blue-500">
+                    <path *ngIf="passwordVisible" stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    <path *ngIf="!passwordVisible" stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="form__errors mb-6">
+                <ul class="error-message">
+                  <li *ngFor="let error of errorMessage.password" [hidden]="!formCredentials.get('password')?.hasError(error.type) || !formCredentials.get('password')?.dirty || !formCredentials.get('password')?.touched">{{ error.message }}</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="custom-control custom-control-alternative custom-checkbox">
+              <input class="custom-control-input" id=" customCheckLogin" type="checkbox" formControlName="remembe_me">
+              <label class="custom-control-label" for=" customCheckLogin">
+                <span class="text-muted">Remember me</span>
+              </label>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary my-4" >Ingresar</button>
+            </div>             
+          </form>          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

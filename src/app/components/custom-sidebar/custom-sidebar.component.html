@@ -1,0 +1,20 @@
+<div class="sidebar" [ngClass]="{'open': isOpen}" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+  <div class="logo">
+    <img src="assets/logo.png" alt="Logo">
+  </div>
+
+  <div class="menu">
+    <ul>
+      <li *ngFor="let item of menuItems">
+        <a href="{{ item.link }}" (click)="toggleSubMenu(item)">
+          {{ item.label }}
+        </a>
+        <ul class="submenu" *ngIf="item.submenu && item.open">
+          <li *ngFor="let subItem of item.submenu">
+            <a href="{{ subItem.link }}">{{ subItem.label }}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

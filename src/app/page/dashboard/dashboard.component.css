@@ -1,0 +1,48 @@
+.main-content {
+  margin-left: 250px;
+  transition: margin-left 0.3s;
+}
+
+.sidebar-collapsed ~ .main-content {
+  margin-left: 80px;
+}
+
+.navbar {
+  z-index: 1100;
+}
+
+.navbar .navbar-brand {
+  font-weight: bold;
+}
+
+.navbar .form-inline {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .form-control {
+  border-radius: 0;
+}
+
+.navbar .input-group {
+  width: 100%;
+}
+
+.navbar .input-group-append .btn {
+  border: none;
+  background-color: transparent;
+}
+
+.navbar .input-group-append .btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar .dropdown-menu {
+  min-width: 200px;
+}
+
+.navbar .badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

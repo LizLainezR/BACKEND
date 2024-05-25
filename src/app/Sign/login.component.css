@@ -1,0 +1,11 @@
+.error-message {
+    color: #e53e3e; /* Cambia el color del texto del error */
+    font-size: 14px; /* Tamaño de fuente */
+    margin-top: 4px; /* Espacio arriba del mensaje */
+  }
+  
+  .error-message li {
+    list-style: none; /* Elimina viñetas de la lista */
+    margin-bottom: 4px; /* Espacio entre cada mensaje de error */
+  }
+  

@@ -1,0 +1,83 @@
+/* Estilo para el sidebar */
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  background-color: #333;
+  overflow-x: hidden;
+  transition: left 0.3s;
+  padding-top: 60px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar .logo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar .logo img {
+  width: 100px;
+}
+
+.sidebar .menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar .menu ul li {
+  padding: 8px 16px;
+  text-decoration: none;
+  position: relative;
+}
+
+.sidebar .menu ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar .menu ul li a:hover {
+  background-color: #575757;
+  color: white;
+}
+
+.sidebar .submenu {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.sidebar .submenu li {
+  padding: 8px 0;
+}
+
+.sidebar .submenu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar .submenu li a:hover {
+  background-color: #777;
+}
+
+/* Media queries para adaptar el sidebar a diferentes tamaños de pantalla */
+@media (max-width: 767px) {
+  .sidebar {
+    width: 200px;
+    left: -200px;
+  }
+
+  .sidebar.open {
+    width: 200px;
+    left: 0;
+  }
+
+  .sidebar .logo img {
+    width: 80px;
+  }
+}

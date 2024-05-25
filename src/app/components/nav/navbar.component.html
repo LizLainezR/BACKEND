@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="navbar-left">
+    <div class="notifications">
+      <a href="#">Notificaciones</a>
+    </div>
+  </div>
+  <div class="navbar-center">
+    <input type="text" placeholder="Buscar...">
+  </div>
+  <div class="navbar-right">
+    <div class="user-menu" (click)="toggleDropdown()">
+      Usuario
+      <div class="dropdown-content" *ngIf="showDropdown">
+        <a href="#">Perfil</a>
+        <a href="#">Salir</a>
+      </div>
+    </div>
+  </div>
+</nav>
