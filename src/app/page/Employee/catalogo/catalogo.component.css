@@ -1,0 +1,26 @@
+/* Estilos para la imagen del producto */
+.card-img-top {
+  max-height: 200px; /* Altura máxima de la imagen */
+  object-fit: contain; /* Ajusta la imagen dentro del contenedor */
+}
+
+/* Estilos para el título del producto */
+.card-title {
+  font-size: 1.25rem; /* Tamaño de fuente del título */
+}
+
+/* Estilos para el precio del producto */
+.card-text strong {
+  color: #28a745; /* Color verde para el precio */
+}
+
+/* Estilos para el botón "Ver Detalle" */
+.btn-primary {
+  background-color: #007bff; /* Color de fondo del botón */
+  border-color: #007bff; /* Color del borde del botón */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Color de fondo al pasar el cursor sobre el botón */
+  border-color: #0056b3; /* Color del borde al pasar el cursor sobre el botón */
+}

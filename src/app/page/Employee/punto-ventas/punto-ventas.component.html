@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+
+<div class="sale-header">
+  <h2>PUNTO DE VENTA</h2>
+  <form (ngSubmit)="checkCustomerExists()">
+    <table>
+      <tr>
+        <td><label for="id_unique">Ingrese CED/RUC/PASS:</label></td>
+        <td><input id="id_unique" [(ngModel)]="newCustomer.id_unique" name="id_unique" (ngModelChange)="checkCustomerExists()" required /></td>
+      </tr>
+    </table>
+  </form>
+
+  <div *ngIf="customerExists" class="customer-details">
+    <h3>DATOS DE CLIENTE</h3>
+    <table>
+      <tr>
+        <td><strong>CED/RUC/PASS:</strong></td>
+        <td>{{ customerDetails?.id_unique }}</td>
+        <td><strong>Full Name:</strong></td>
+        <td>{{ customerDetails?.full_name }}</td>
+      </tr>
+      <tr>
+        <td><strong>Dirección:</strong></td>
+        <td>{{ customerDetails?.address }}</td>
+        <td><strong>Email:</strong></td>
+        <td>{{ customerDetails?.email }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Aquí puedes agregar lógica para mostrar un formulario de registro si showRegistrationForm es verdadero -->
+
+</div>
+
+<div class="container-details">
+  <form [formGroup]="saleForm" (ngSubmit)="submit()">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Código Producto</th>
+          <th>Descripción</th>
+          <th>Precio Unitario</th>
+          <th>Cantidad</th>
+          <th>Descuento</th>
+          <th>Valor Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody formArrayName="sales">
+        <!-- <tr *ngFor="let sale of sales.controls; let i = index" [formGroupName]="i">
+          <td><input formControlName="newCustomer." class="form-control" (blur)="checkProductDetails(i)"></td>
+          <td><input formControlName="description" class="form-control"></td>
+          <td><input formControlName="unitPrice" class="form-control" type="number" (input)="calculateTotal(i)"></td>
+          <td><input formControlName="quantity" class="form-control" type="number" (input)="calculateTotal(i)"></td>
+          <td><input formControlName="discount" class="form-control" type="number" (input)="calculateTotal(i)"></td>
+          <td><input formControlName="totalValue" class="form-control" type="number" readonly></td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="removeSaleRow(i)">Eliminar</button>
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+    <div class="form-buttons">
+      <button type="button" class="btn btn-primary" (click)="addSaleRow()">Agregar Producto</button>
+      <button type="submit" class="btn btn-success">Generar Factura</button>
+    </div>
+  </form>
+</div>

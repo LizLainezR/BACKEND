@@ -1,83 +1,59 @@
-/* Estilo para el sidebar */
-.sidebar {
-  height: 100%;
-  width: 250px;
-  position: fixed;
-  top: 0;
-  left: -250px;
-  background-color: #333;
-  overflow-x: hidden;
-  transition: left 0.3s;
-  padding-top: 60px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-}
-
-.sidebar.open {
-  left: 0;
-}
-
-.sidebar .logo {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.sidebar .logo img {
-  width: 100px;
-}
-
-.sidebar .menu ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar .menu ul li {
-  padding: 8px 16px;
-  text-decoration: none;
-  position: relative;
-}
-
-.sidebar .menu ul li a {
-  color: white;
-  text-decoration: none;
-  display: block;
-}
-
-.sidebar .menu ul li a:hover {
-  background-color: #575757;
-  color: white;
-}
-
-.sidebar .submenu {
-  list-style-type: none;
-  padding-left: 20px;
-}
-
-.sidebar .submenu li {
-  padding: 8px 0;
-}
-
-.sidebar .submenu li a {
-  color: white;
-  text-decoration: none;
-}
-
-.sidebar .submenu li a:hover {
-  background-color: #777;
-}
-
-/* Media queries para adaptar el sidebar a diferentes tamaños de pantalla */
-@media (max-width: 767px) {
-  .sidebar {
-    width: 200px;
-    left: -200px;
+  /* Estilos para el contenido principal */
+  .content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ECF0F1; /* Fondo claro para contraste */
+    color: #2C3E50; /* Texto oscuro */
   }
-
-  .sidebar.open {
-    width: 200px;
-    left: 0;
+  
+  /* Estilos para los módulos */
+  .module {
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
   }
-
-  .sidebar .logo img {
-    width: 80px;
+  
+  .module h3 {
+    font-size: 18px;
+    margin: 0;
+    padding: 10px;
+    background-color: #34495E; /* Fondo de módulo */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
   }
-}
+  
+  .module h3.selected {
+    background-color: #1ABC9C; /* Fondo cuando está seleccionado */
+  }
+  
+  /* Estilos para los submódulos */
+  .submodules {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .submodules ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .submodules li {
+    margin-bottom: 5px;
+  }
+  
+  .submodule-link {
+    color: #ECF0F1; /* Color del texto de los enlaces */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .submodule-link:hover {
+    color: #1ABC9C; /* Color del texto al pasar el ratón */
+  }
+  
+  /* Efecto hover */
+  .module:hover h3 {
+    background-color: #1ABC9C; /* Fondo al pasar el ratón */
+  }
+  

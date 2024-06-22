@@ -1,27 +1,33 @@
 import { Injectable, signal } from '@angular/core';
-import { Menu } from '../model/menu-model';
+import { RespuestaSubmodule, Permission, RespuestaModule, PermissionMenu } from '../model/menu-model';
 import { UserData } from '../model/user-model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CODE_LS_TOKEN } from '../conts/ferre-conts';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private userData$ = new BehaviorSubject<UserData | null>(null);
-  private userMenu$ = new BehaviorSubject<Menu[]>([]);
+  private userMenu$ = new BehaviorSubject<PermissionMenu[]>([]);
   private activeRequests = 0;
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  getMenuByRole(roleId: number): Observable<PermissionMenu[]> {
+      return this.http.get<PermissionMenu[]>(`${environment.API_URL}/menu/${roleId}`);
+  }
 
   getUserData(): BehaviorSubject<UserData | null> {
     return this.userData$;
   }
 
-  setUserMenu(menu: Menu[]): void {
+  setUserMenu(menu: PermissionMenu[]): void {
     this.userMenu$.next(menu);
   }
 
-  getUserMenu(): BehaviorSubject<Menu[]> {
+  getUserMenu(): BehaviorSubject<PermissionMenu[]> {
     return this.userMenu$;
   }
 
@@ -36,20 +42,12 @@ export class AuthService {
   clearUserMenu(): void {
     this.userMenu$.next([]);
   }
-  
+ crementActiveRequests(): void {
+  this.activeRequests++;}
 
-  incrementActiveRequests(): void {
-    this.activeRequests++;
-    console.log("holi aqui"+this.activeRequests);
-    // Aquí podrías mostrar el loader si lo deseas
-  }
-
-  decrementActiveRequests(): void {
+  dcrementActiveRequests(): void {
     if (this.activeRequests > 0) {
-      this.activeRequests--;
-      console.log("repuestas"+this.activeRequests)
-    }
-    // Aquí podrías detener el loader si el contador de solicitudes activas es cero
+      this.activeRequests--;}
   }
 
 }

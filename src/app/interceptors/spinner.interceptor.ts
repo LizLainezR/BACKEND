@@ -12,15 +12,9 @@ const stopLoader=(added:number)=>{
 }
 export const spinnerInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
-  // Incrementa el contador de solicitudes activas
-  authService.incrementActiveRequests();
-  console.log("iniciar loader");
- 
- 
-  return next(req).pipe(finalize(() => {
-    console.log("iniciar  4444");
-    // Decrementa el contador de solicitudes activas y detiene el loader si es necesario
-    authService.decrementActiveRequests();
+  authService.crementActiveRequests();
+  return next(req).pipe(finalize(() => { 
+    authService.dcrementActiveRequests();
     console.log("iniciar");
   })); 
 };

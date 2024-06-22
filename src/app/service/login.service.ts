@@ -1,11 +1,11 @@
 import { AuthService } from './auth.service';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { UserAuthenticationResponse, UserCredentials } from '../model/user-model';
 import { CODE_LS_MENU, CODE_LS_TOKEN, CODE_LS_USER } from '../conts/ferre-conts';
+import { PermissionMenu } from '../model/menu-model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,16 +18,14 @@ export class LoginService {
   }
 
   authenticate(credentials: UserCredentials): Observable<UserAuthenticationResponse> {
-   return this.http.post<UserAuthenticationResponse>(`${environment.API_URL}/login`, credentials).pipe(
-      tap((response: UserAuthenticationResponse) => {
-        console.log(response);
-        if (response.jwt) {         
-          console.log(" VALIDADO token",response.jwt);
-          this.setLocalStorage(CODE_LS_TOKEN, response.jwt);
-          this.authService.setUserData(response.user);
-        //  console.log("Authservice"+ this.authService.setUserData(response.user));
-        //this.authService.setUserMenu(response.menu);
-          this.isAuthenticated$.next(true);
+   return this.http.post<UserAuthenticationResponse>(`${environment.API_URL}/login`, credentials).pipe( 
+    tap((response: UserAuthenticationResponse) => {   
+      if (response.jwt) {             
+        this.setLocalStorage(CODE_LS_TOKEN, response.jwt);
+        this.setLocalStorage(CODE_LS_USER, JSON.stringify(response.user));
+        this.authService.setUserData(response.user);
+        this .fetchUserMenu(response.user.id_role);
+        this.isAuthenticated$.next(true);     
         } else {
           console.error('Error de autenticación:', response.msj);
         }
@@ -35,17 +33,35 @@ export class LoginService {
     );
   }
 
+  fetchUserMenu(id_role: number): void {
+    this.authService.getMenuByRole(id_role).subscribe(
+      (modules: PermissionMenu[]) => {
+        this.setLocalStorage(CODE_LS_MENU, JSON.stringify(modules));
+        this.authService.setUserMenu(modules);
+      }
+    );
+  }
+
+  private loadMenuFromLocalStorage(): void {
+    const menuJson = this.getLocalStorage(CODE_LS_MENU);
+    if (menuJson) {
+      const menu = JSON.parse(menuJson) as PermissionMenu[];
+      this.authService.setUserMenu(menu);
+    }
+  }  
+  
   private loadToken(): void {
     const token = this.getLocalStorage(CODE_LS_TOKEN);
-    console.log("load token: "+token)
-    if (token) {
+    if(token){
       this.isAuthenticated$.next(true);
-      console.log("token: cargado y existe"+token)
-    }
+      this.loadMenuFromLocalStorage();
+     }
   }
 
   logout(): void {
     this.removeLocalStorage(CODE_LS_TOKEN);
+    this.removeLocalStorage(CODE_LS_USER);
+    this.removeLocalStorage(CODE_LS_MENU);
     this.authService.clearUserData();
     this.authService.clearUserMenu();
     this.isAuthenticated$.next(false);

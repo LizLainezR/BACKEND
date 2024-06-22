@@ -18,7 +18,7 @@
           <div class="text-center mb-4">
             <h2 class="text-center text-muted">Inicio de sesión</h2>
             <p class="text-lead text-light">Potenciando la eficiencia en cada paso: Tu plataforma de gestión ferretera.</p>
-          </div>   
+          </div>
         </div>
         <div class="card-body px-lg-5 py-lg-5">
           <form [formGroup]="formCredentials" (ngSubmit)="onSubmitForm()">
@@ -26,21 +26,19 @@
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    <i class="fas fa-user"></i>                        
+                    <i class="fas fa-user"></i>
                   </span>
-                </div>                    
+                </div>
                 <input class="form-control" type="text" formControlName="username" name="username" id="username" placeholder="USUARIO">
               </div>
               <div class="form__errors mb-6">
                 <ul class="error-message">
-                  <li *ngFor="let error of errorMessage.usuario" [hidden]="!formCredentials.get('user')?.hasError(error.type) || !formCredentials.get('user')?.dirty || !formCredentials.get('user')?.touched">{{ error.message }}</li>
+                  <li *ngFor="let error of errorMessage.username" [hidden]="!formCredentials.get('username')?.hasError(error.type) || !formCredentials.get('username')?.dirty || !formCredentials.get('username')?.touched">{{ error.message }}</li>
                 </ul>
-     </div>
-            
-             
+              </div>
             </div>
-               
-            <div class="">            
+
+            <div class="">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-lock"></i></span>
@@ -61,16 +59,16 @@
             </div>
 
             <div class="custom-control custom-control-alternative custom-checkbox">
-              <input class="custom-control-input" id=" customCheckLogin" type="checkbox" formControlName="remembe_me">
-              <label class="custom-control-label" for=" customCheckLogin">
+              <input class="custom-control-input" id="customCheckLogin" type="checkbox" formControlName="remember_me">
+              <label class="custom-control-label" for="customCheckLogin">
                 <span class="text-muted">Remember me</span>
               </label>
             </div>
 
             <div class="text-center">
-              <button type="submit" class="btn btn-primary my-4" >Ingresar</button>
-            </div>             
-          </form>          
+              <button type="submit" class="btn btn-primary my-4">Ingresar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

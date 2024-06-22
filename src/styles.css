@@ -92,17 +92,13 @@ dl,ol,p,ul {
 
 .container {
     width: 100%;
-    margin-right: auto;
-    margin-left: auto;
     padding-right: 15px;
-    padding-left: 15px;
+ 
 }
 
 .container-fluid {
     width: 100%;
     margin-right: auto;
-    margin-left: auto;
-    padding-right: 15px;
     padding-left: 15px
 }
 
@@ -1301,3 +1297,6 @@ article,aside,figcaption,figure,footer,header,hgroup,main,nav,section {
 
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

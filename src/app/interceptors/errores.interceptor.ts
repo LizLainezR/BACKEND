@@ -4,24 +4,24 @@ import { catchError, throwError } from 'rxjs';
 import { LoginService } from '../service/login.service';
 
 export const erroresInterceptor: HttpInterceptorFn = (req, next) => {
-  const loginService=inject(LoginService)
-  return next(req).pipe(catchError((error)=>{
-    if([401].includes(error.status) && error.error.error==='TOKEN_EXPIRED'){
+  const loginService = inject(LoginService);
 
-      console.log(error.error.error)
-      loginService.logout()
-    }
-    
-    else if([401,403].includes(error.status)){
-      console.log('Unautorized request');
+  return next(req).pipe(
+    catchError((error) => {
+      if ([401].includes(error.status) && error.error?.error === 'TOKEN_EXPIRED') {
+        console.log('TOKEN_EXPIRED');
+        loginService.logout();
+      } else if ([401, 403].includes(error.status)) {
+        console.log('Unauthorized request');
+      } else if ([404].includes(error.status)) {
+        console.log('Not found');
+      } else {
+        console.log(`Unexpected error: ${error.statusText}`);
+      }
+      const e = error.error?.message || error.statusText || 'Unknown error';
+      console.error('ERROR: ' + e);
 
-    }else if([404].includes(error.status)){
-      console.log("Not found");
-      
-    }
-    const e = error.error.message || error.statusText;
-    console.log('ERRORES'+e)
-    
-    return throwError(()=>error)
-  }));
+      return throwError(() => new Error(e));
+    })
+  );
 };

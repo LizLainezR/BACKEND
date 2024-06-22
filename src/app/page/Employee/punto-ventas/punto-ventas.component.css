@@ -1,0 +1,136 @@
+/* modal-regis-cust.component.css */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999; /* Asegura que el modal esté en la parte superior */
+  }
+  
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+    z-index: 9998; /* Asegura que el fondo esté detrás del modal */
+  }
+  /* sales */
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  color: #000; /* Texto en negro */
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para el encabezado de la venta */
+.sale-header {
+  margin: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.sale-header h2 {
+  margin-bottom: 20px;
+  color: #000; /* Texto en negro */
+}
+
+.sale-header table {
+  width: 100%;
+}
+
+.sale-header label {
+  font-weight: bold;
+}
+
+/* Estilos para los detalles del cliente */
+.customer-details {
+  margin-top: 20px;
+}
+
+.customer-details table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.customer-details td {
+  padding: 5px;
+  border: 1px solid #dee2e6;
+}
+
+.customer-details td:first-child {
+  font-weight: bold;
+}
+
+/* Estilos para el contenedor de los detalles de la venta */
+.container-details {
+  margin: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.container-details .table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.container-details .table th,
+.container-details .table td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+}
+
+.container-details .table th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}

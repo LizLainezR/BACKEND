@@ -1,20 +1,11 @@
-<div class="sidebar" [ngClass]="{'open': isOpen}" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
-  <div class="logo">
-    <img src="assets/logo.png" alt="Logo">
-  </div>
-
-  <div class="menu">
-    <ul>
-      <li *ngFor="let item of menuItems">
-        <a href="{{ item.link }}" (click)="toggleSubMenu(item)">
-          {{ item.label }}
-        </a>
-        <ul class="submenu" *ngIf="item.submenu && item.open">
-          <li *ngFor="let subItem of item.submenu">
-            <a href="{{ subItem.link }}">{{ subItem.label }}</a>
+    <div *ngFor="let item of menuItems" class="module" (click)="onModuleClick(item.id)">
+      <h3 [class.selected]="selectedModuleId === item.id">{{ item.description }}</h3>
+      <div *ngIf="selectedModuleId === item.id && item.submodule && item.submodule.length > 0" class="submodules">
+        <ul>
+          <li *ngFor="let submodule of item.submodule">
+            <a [routerLink]="[submodule.url]" class="submodule-link">
+              {{ submodule.description }}
+            </a>
           </li>
         </ul>
-      </li>
-    </ul>
-  </div>
-</div>
+      </div>

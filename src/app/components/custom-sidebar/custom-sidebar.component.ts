@@ -1,27 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { PermissionMenu} from '../../model/menu-model';
+import { AuthService } from '../../service/auth.service';
 
 interface RouteInfo {
   path: string;
   title: string;
   icon: string;
-  class: string;
-}
-
-// Definición de las rutas
-export const CUSTOM_ROUTES: RouteInfo[] = [
-  { path: '/custom-dashboard', title: 'Custom Dashboard',  icon: 'custom_icon_dashboard', class: '' },
-  { path: '/custom-icons', title: 'Custom Icons',  icon:'custom_icon_atom', class: '' },
-  { path: '/custom-maps', title: 'Custom Maps',  icon:'custom_icon_map', class: '' },
-  { path: '/custom-notifications', title: 'Custom Notifications',  icon:'custom_icon_bell', class: '' },
-
-  { path: '/custom-user-profile', title: 'Custom User Profile',  icon:'custom_icon_user', class: '' },
-  { path: '/custom-table-list', title: 'Custom Table List',  icon:'custom_icon_bullet-list', class: '' },
-  { path: '/custom-typography', title: 'Custom Typography',  icon:'custom_icon_text', class: '' },
-  { path: '/custom-upgrade', title: 'Custom Upgrade to PRO',  icon:'custom_icon_spaceship', class: 'active active-pro' }
-];
+  class: string;}
 @Component({
   selector: 'app-custom-sidebar',
   standalone: true,
@@ -29,25 +17,40 @@ export const CUSTOM_ROUTES: RouteInfo[] = [
   templateUrl: './custom-sidebar.component.html',
   styleUrl: './custom-sidebar.component.css'
 })
+
 export class CustomSidebarComponent { 
   isOpen: boolean = false;
-  menuItems: any[] = [];
+  menuItems: PermissionMenu[] = [];
+  roleId: number | undefined;
+  selectedModuleId: number | null = null;
 
- // constructor(private menuService: MenuService) { }
+  constructor(private menuService: AuthService) {}
 
-  ngOnInit(): void {
- /*   this.menuService.getMenuItems().subscribe(data => {
-      this.menuItems = data.items;
-    });*/
+  ngOnInit() {
+    this.menuService.getUserMenu().subscribe((ArrayPer: PermissionMenu[]) => {
+      this.menuItems = ArrayPer;
+       console.log(this.menuItems);
+    });
+  }
+
+  isArray(value: any): boolean {
+    return Array.isArray(value);
   }
 
   toggleSidebar(state: boolean): void {
     this.isOpen = state;
   }
 
-  toggleSubMenu(item: any): void {
-    if (item.submenu) {
-      item.open = !item.open;
-    }
+  onModuleClick(moduleId: number) {
+    this.selectedModuleId = this.selectedModuleId === moduleId ? null : moduleId; // Alternar selección
+  }
+
+  hasSubmodules(moduleId: number): boolean {
+    return this.menuItems.some((item) => item.id_submodule === moduleId);
+  }
+
+  toggleSubmodules(event: any): void {
+    const moduleElement = event.currentTarget;
+    moduleElement.classList.toggle('show-submodules');
   }
 }

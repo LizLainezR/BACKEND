@@ -1,0 +1,88 @@
+/* Estilos generales */
+.custom-btn {
+  border-radius: 5px;
+}
+
+/* Estilos para el modal */
+.custom-modal-dialog {
+  max-width: 370px;
+  margin: auto;
+}
+
+.custom-modal-content {
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.custom-modal-header {
+  background-color: #3498db; /* Azul */
+  color: #ffffff; /* Texto blanco */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px;
+}
+
+.custom-modal-footer {
+  background-color: #f39c12; /* Naranja */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.custom-modal-footer .btn-secondary {
+  background-color: #e74c3c; /* Rojo */
+  margin-right: 10px;
+}
+
+.custom-modal-footer .btn-secondary:hover {
+  background-color: #c0392b; /* Rojo más oscuro al pasar el mouse */
+}
+
+.custom-modal-body {
+  padding: 10px;
+}
+
+/* Estilos adicionales para el formulario */
+.custom-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.custom-form .form-group {
+  margin-bottom: 10px;
+}
+
+.custom-form label {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.custom-form input,
+.custom-form select,
+.custom-form textarea {
+  font-size: 12px;
+  padding: 5px;
+}
+
+.custom-form textarea {
+  resize: vertical;
+  height: 60px;
+}
+
+/* Clase para elementos de ancho completo */
+.custom-form .full-width {
+  grid-column: span 2;
+}
+
+.custom-form button {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.btn-success{
+  background-color: aquamarine;
+}

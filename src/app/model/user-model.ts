@@ -1,20 +1,15 @@
 import { EnterpriseResponse } from "./entreprise-model"
-import { Menu } from "./menu-model"
-import { Privilege } from "./privilege"
 import { Rol } from "./rol-model"
-import { UserPrivilege } from "./user-privilage"
 
-interface User{
-    userId:number,
+  interface User{
+    id:number,
     username:string,
     email:string,
     remembe_me:boolean,
     email_verified_at:boolean,
     password:string,
-    id_rol:number,
-    status:boolean,
-    privileges:UserPrivilege[],
-    privilege:Privilege,
+    id_role:   number,
+    role: Rol[],
     enterprise:EnterpriseResponse,
     enterpriseId:number,
     privilegeId:number
@@ -22,14 +17,13 @@ interface User{
 interface AuthUserResponse {
     jwt:string,
     msj:string,
-    role_id: Rol[],
-    user:UserData
-}
+    valid:boolean,
+    role: Rol[],
+    user:UserData}
 
 type UserCredentials=Pick<User,'username'|'password'|'remembe_me'>
-type UserAuthenticationResponse=Pick<AuthUserResponse,'jwt'|'msj'|'role_id'|'user'>
-type UserData=Pick<User,'userId'|'username'|'email'|'email_verified_at'| 'password'|'remembe_me'|'privileges'|'enterprise'>
-type UserDataToSave=Pick<User,  'email'|'username'|'password'|'status'|"enterpriseId"|"privilegeId">
-type UserSaveResponse=Pick<User ,'userId'|'email'|'password'|'username'|'status'|'privilege'>
-
+type UserAuthenticationResponse=Pick<AuthUserResponse,'jwt'|'msj'|'valid'|'role'|'user'>
+type UserData=Pick<User,'id'|'username'|'email'|'email_verified_at'| 'password'|'role'|'id_role'|'remembe_me'|'enterprise'>
+type UserDataToSave=Pick<User,  'email'|'username'|'password'|"enterpriseId">
+type UserSaveResponse=Pick<User ,'id'|'email'|'password'|'username'>
 export {UserCredentials,UserAuthenticationResponse,UserData,UserDataToSave,UserSaveResponse}

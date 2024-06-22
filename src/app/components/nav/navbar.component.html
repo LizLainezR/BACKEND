@@ -1,18 +1,25 @@
 <nav class="navbar">
   <div class="navbar-left">
     <div class="notifications">
-      <a href="#">Notificaciones</a>
+      <a href="#">
+        <i class="fas fa-bell"></i> Notificaciones
+      </a>
     </div>
   </div>
   <div class="navbar-center">
     <input type="text" placeholder="Buscar...">
+    <i class="fas fa-search"></i>
   </div>
   <div class="navbar-right">
     <div class="user-menu" (click)="toggleDropdown()">
-      Usuario
+      <i class="fas fa-user"></i> Usuario
       <div class="dropdown-content" *ngIf="showDropdown">
-        <a href="#">Perfil</a>
-        <a href="#">Salir</a>
+        <a (click)="redirectToProfile()">
+          <i class="fas fa-user-circle"></i> Perfil
+        </a>
+        <a (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i> Salir
+        </a>
       </div>
     </div>
   </div>

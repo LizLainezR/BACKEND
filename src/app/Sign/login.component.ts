@@ -16,19 +16,20 @@ import { AuthService } from '../service/auth.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  
   formCredentials!: FormGroup;
   type = "password";
   passwordVisible: boolean = false;
   remembe_me: boolean = false; 
   
-  errorMessage: any = {
+  errorMessage = {
     password: [
       { id: 1, type: 'required', message: 'La contraseña es obligatoria' },
       { id: 2, type: 'maxlength', message: 'La contraseña debe tener máximo 20 caracteres' },
       { id: 3, type: 'minlength', message: 'La contraseña debe tener mínimo 6 caracteres' },
       { id: 4, type: 'pattern', message: 'La contraseña debe contener letras y números' },
     ],
-    usuario: [
+    username: [
       { id: 1, type: 'required', message: 'El nombre de usuario es obligatorio' },
       { id: 2, type: 'maxlength', message: 'El nombre de usuario debe tener máximo 15 caracteres' },
       { id: 3, type: 'minlength', message: 'El nombre de usuario debe tener mínimo 4 caracteres' },
@@ -44,9 +45,18 @@ export class LoginComponent {
 
   initForm() {
     this.formCredentials = this.fb.group({
-      username: ['ambar', [Validators.required, Validators.minLength(4), Validators.maxLength(15), Validators.pattern('[a-zA-Z0-9]+')]],
-      password: ['123456789', [Validators.required, Validators.minLength(6), Validators.maxLength(20), Validators.pattern('[a-zA-Z0-9]+')]],
-      remembe_me: [false]
+      username: ['liz_lainez', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(15),
+        Validators.pattern('^[a-zA-Z0-9_-]+$')
+      ]],
+      password: ['Aleatorio123!', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern('^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[@$!%*#?&]).+$')
+      ]],
+      remember_me: [false]
     });
   }
 

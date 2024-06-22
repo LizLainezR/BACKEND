@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-center mb-4">Catálogo de Productos</h2>
+    </div>
+  </div>
+
+  <!-- Campo de búsqueda -->
+  <div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+      <div class="input-group">
+        <select class="form-select" [(ngModel)]="tipoBusqueda">
+          <option value="nombre">Nombre</option>
+          <option value="codigo">Código</option>
+          <option value="marca">Marca</option>
+        </select>
+        <input type="text" class="form-control" placeholder="Buscar productos..." [(ngModel)]="searchTerm" (keyup)="buscarProductos()">
+      </div>
+    </div>
+  </div>
+
+  <!-- Listado de productos filtrados -->
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let producto of products">
+      <div class="card h-100 shadow-sm">
+        <img class="card-img-top" [src]="producto.img" alt="Imagen del Producto">
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.product_name }}</h5>
+          <p class="card-text">{{ producto.description }}</p>
+          <p class="card-text"><strong>Precio:</strong> ${{ producto.cost }}</p>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-primary" (click)="verDetalle(producto.id_product)">Ver Detalle</button>
+          <!-- Aquí podrías añadir más botones como "Agregar al carrito" -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
