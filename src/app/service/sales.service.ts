@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { InvoicePick } from '../model/sale-model';
-import { ProductDataToSave, ProductResponse } from '../model/product-model';
+import { ProductResponse } from '../model/product-model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +22,8 @@ export class SalesService {
   }
  
 
-  obtenerProductos(): Observable<ProductDataToSave[]> {
-    return this.http.get<ProductDataToSave[]>(`${this.ApiSale}/ListaProduct`);
+  obtenerProductos(): Observable<ProductResponse[]> {
+    return this.http.get<ProductResponse[]>(`${this.ApiSale}/ListaProduct`);
   }
   
   getProductBySku(sku: string): Observable<ProductResponse | null> {

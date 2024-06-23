@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product, ProductDataToSave } from '../../../model/product-model';
+import { Product, ProductResponse } from '../../../model/product-model';
 import { SalesService } from '../../../service/sales.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './catalogo.component.css'
 })
 export class CatalogoComponent {
-  products: ProductDataToSave[] = [];
+  products: ProductResponse[] = [];
   currentPage: number = 1;
   pageSize: number = 5;
   totalProducts: number=0;
@@ -33,7 +33,7 @@ export class CatalogoComponent {
        .subscribe(products => this.products = products);
    }
  
-   verDetalle(id: string): void {
+   verDetalle(id: number): void {
      // Aquí podrías implementar la lógica para redirigir al usuario al detalle del producto según el ID
      console.log(`Ver detalle del producto con ID: ${id}`);
    }
@@ -48,8 +48,8 @@ export class CatalogoComponent {
     = this.products.filter(producto => {
       if (this.tipoBusqueda === 'nombre') {
         return producto.product_name.toLowerCase().includes(term);
-      } else if (this.tipoBusqueda === 'codigo') {
-        return producto.id_product.toLowerCase().includes(term);
+      //} else if (this.tipoBusqueda === 'codigo') {
+       // return producto.description.toLowerCase().includes(term);
       } else {
         return false;
       }

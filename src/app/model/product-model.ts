@@ -36,6 +36,6 @@ type CategoryDataToSave = Pick<Category, 'category_name' | 'status'>;
 type TrademarkDataToSave = Pick<Trademark, 'trademark_name' | 'status'>;
 type PatternDataToSave = Pick<Pattern, 'models_name' | 'id_trademark' | 'status'>;
 type ProductCreationData = Pick<Product, 'sku'| 'product_name' | 'description' | 'img' | 'unit_price' | 'stock_quantity' | 'stock_max' | 'stock_min' | 'id_category' | 'id_pattern' | 'id_product' >;
-type ProductResponse = Pick<Product,'sku'| 'product_name' | 'unit_price' | 'stock_quantity' | 'id_product' >;
+type ProductResponse = Pick<Product,'sku'| 'product_name' | 'unit_price' | 'stock_quantity' | 'id_product'|'img'|'description' >;
 
 export { Category, Trademark, Pattern, Product, CategoryDataToSave, TrademarkDataToSave, PatternDataToSave, ProductCreationData ,ProductResponse };
