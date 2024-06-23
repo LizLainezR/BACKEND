@@ -12,7 +12,7 @@ export const autoLoginGuard: CanActivateFn = (route, state) => {
     take(1), // Toma solo el primer valor emitido
     map(isAuthenticated => {
       if (isAuthenticated) {
-        return true;
+        router.navigate(['/dashboard'])
       }
       return true; 
     })

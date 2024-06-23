@@ -3,7 +3,6 @@ import { Customer, CustomerCreationData, CustomerResponse, TipoClienteCreation }
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { ProductDataToSave } from '../model/product-model';
 
 @Injectable({
   providedIn: 'root'
